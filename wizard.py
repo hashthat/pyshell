@@ -53,7 +53,7 @@ def copy_ssh_key():
 
 def open_github_ssh_page():
     """Opens the GitHub SSH key settings page in the default web browser."""
-    url = "https://github.com/settings/"  # URL of the GitHub SSH settings page
+    url = "https://github.com/settings/ssh/new"  # URL of the GitHub SSH settings page
     webbrowser.open(url, new=2)  # Open the URL in a new browser tab (if possible)
 
 # Main GUI window setup

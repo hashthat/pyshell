@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
 import subprocess
-import tkinter as tk
-from tkinter import messagebox
-import webbrowser
+# import tkinter as tk
+# from tkinter import messagebox
+# import webbrowser
 
 def my_shell():
     """

@@ -14,7 +14,7 @@ def my_shell():
     print("Welcome to PyShell! Type 'exit' to quit.")
     print("Use 'ask' to get help with Linux commands, concepts, or Git.")
     print("Type 'setup' to start setting up your Linux environment for software development.")
-    print("type 'sshwiz' to launch the SSH Key Setup Wizard.")
+    # print("type 'sshwiz' to launch the SSH Key Setup Wizard.")
     # print("By typing 'setup' tkinter will automatically download to be launched!")
     while True:
         # Display prompt for user input

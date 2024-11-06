@@ -14,7 +14,7 @@ def my_shell():
     print("Use 'ask' to get help with Linux commands, concepts, or Git.")
     print("Type 'setup' to start setting up your Linux environment for software development.")
     print("type 'sshwiz' to launch the SSH Key Setup Wizard.")
-    print("By typing 'setup' tkinter will automatically download to be launched!")
+    # print("By typing 'setup' tkinter will automatically download to be launched!")
     while True:
         # Display prompt for user input
         user_input = input("py_shell> ")
@@ -137,11 +137,9 @@ def setup_environment():
     print(f"Created script: {script_name}")
 
     # Step 5: Initialize Git and Push to GitHub
-    print("\nInitializing Git and Pushing to GitHub")
-    print("Commands to initialize and push to GitHub:")
-    print("git init, git add ., git commit, git remote add origin, git push")
-    input("Press Enter after completing Git setup.")
-
+    git_wizard()
+    input("Press Enter after reviewing the Git setup. The configuration will take place automatically to configure your username and email.")
+    print("Create a README.md by typying 'echo this is a README (place whatever text after echo, and you'll create a README.md file for your project!)'")
     print("Your Linux environment is ready for development.")
 
 def check_installation():
@@ -187,39 +185,25 @@ def chmod_wizard(filename):
 def ask_bot(question):
     """Provides tips based on user questions with explanations for specific Linux commands."""
     question = question.lower()
-    if "linux" in question or "command" in question:
-        print("Basic Linux commands include: 'ls', 'cd', 'mkdir', 'rm', 'pwd', 'cp', 'mv', 'man'")
-    elif "ssh" in question:
-        print("To create an SSH key, use 'ssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"'.")
+    linux_commands = {
+        "ls": "Command 'ls': Lists files and directories in the current directory.",
+        "cd": "Command 'cd <directory>': Changes to the specified directory.",
+        "pwd": "Command 'pwd': Prints the current working directory.",
+        "whoami": "Command 'whoami': Displays the current logged-in user.",
+        "neofetch": "Command 'neofetch': Shows Linux environment specs and distro information.",
+        "chmod": "Command 'chmod': Changes file permissions. Syntax: chmod <permissions> <filename>.",
+        "grep": "Command 'grep': Searches for a pattern in files. Example: grep 'pattern' filename.txt."
+    }
+    if question in linux_commands:
+        print(linux_commands[question])
     elif "git" in question:
         git_wizard()
-    elif "command":
-        print("Ask about Linux commands, Git, or programming concepts.")
-
-    # Common command responses with explanations
-    elif "ls" in question:
-        print("Command 'ls': Lists files and directories in the current directory.")
-    elif "cd" in question:
-        print("Command 'cd <directory>': Changes to the specified directory.")
-    elif "pwd" in question:
-        print("Command 'pwd': Prints the current working directory.")
-    elif "whoami" in question:
-        print("Command 'whoami': Displays the current logged-in user.")
-    elif "neofetch" in question:
-        print("Command 'neofetch': Shows Linux environment specs and distro information.")
-    elif "chmod" in question:
-        chmod_wizard()
-    elif "ssh" in question:
-        print("To create an SSH key, use 'ssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"'.")
-    elif "git" in question:
-        git_wizard()
+    elif "commands" in question:
+        print("Basic Linux commands include: ls, cd, mkdir, rm, pwd, cp, mv, man")
     elif "recursion" in question:
         print("Recursion is a function calling itself. Head recursion: the call is the first action.")
-    elif "grep" in question:
-        print("Grep is used to search patterns in files. Example: grep 'pattern' filename.txt")
     else:
-        print("Ask about Linux commands, Git, or programming concepts.")
-
+        print("Ask about specific commands (e.g., 'ls', 'chmod') or concepts like Git or recursion.")
 
 
 def chmod_command(user_input):

@@ -67,6 +67,48 @@ py_shell> chmod +x hello.py
   # Makes hello.py executable
 ```
 
+To use the automated Git function in PyShell, simply work on files in your project as usual—create, edit, or remove files as needed. The Git Wizard's automated function will track these changes and handle the Git `add`, `commit`, and `push` steps for you without requiring manual input for each action. Here’s how to use it:
+
+### Steps to Use the Automated Git Function in PyShell:
+
+1. **Create or Edit Files**:
+   - As you work within PyShell, any new files you create or edits you make will be automatically detected by the automated Git function.
+   - Example commands in PyShell might look like:
+     ```plaintext
+     py_shell> touch new_script.py
+     py_shell> echo "print('Automated Git in action!')" > new_script.py
+     ```
+
+2. **Automated Staging and Committing**:
+   - Once you finish editing, the Git function will automatically stage and commit your changes.
+   - By default, the commit message will reflect your latest action (e.g., "Updated `new_script.py`") or a customizable message if set.
+
+3. **Automatic Pushing to GitHub**:
+   - After committing, PyShell will push your changes to the configured remote repository (e.g., on GitHub).
+   - This requires that you’ve already set up your Git remote (done during the setup process), so the shell knows where to push your updates.
+
+4. **Optional Stash for Uncommitted Changes**:
+   - If you’re not ready to commit certain changes, type `git stash` in PyShell, and the Git Wizard will automatically stash your updates so you can return to them later.
+   - To retrieve stashed changes, simply type `git stash pop`.
+
+### Example Interaction with Automated Git Function
+
+Here’s an example session in PyShell showing how automated Git might look:
+
+```plaintext
+py_shell> touch my_script.py
+# Automatically stages and commits: "Added my_script.py"
+# Automatically pushes to GitHub
+
+py_shell> echo "print('Hello from PyShell')" > my_script.py
+# Automatically stages and commits: "Updated my_script.py"
+# Automatically pushes to GitHub
+```
+
+### Important Notes
+
+- **Git Remote Setup**: Make sure to complete the initial `git remote add origin <url>` command during the setup. This lets PyShell know which remote repository to push to.
+- **Edit Commit Messages**: If you want to customize a message, you can enter a custom commit message prompt within PyShell.
 ## Troubleshooting
 
 If you encounter any issues:

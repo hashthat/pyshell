@@ -23,6 +23,7 @@ def my_shell():
         # Exit condition
         if user_input.lower() in ('exit', 'quit'):
             print("Thank you for using PyShell! Exiting now.")
+            goodbye()
             break
 
         # Launch SSH Key Setup Wizard (ssh_wizard)
@@ -79,6 +80,29 @@ def my_shell():
 
         except Exception as e:
             print(f"Error: {e}")
+
+def goodbye():
+    goodbye_text = """
+
+                                                                            
+                                 ___       ___                           8  
+                                 `MM        MM                          (M) 
+                                  MM        MM                          (M) 
+  __      _____     _____     ____MM        MM____  ____    ___  ____   (M) 
+ 6MMbMMM 6MMMMMb   6MMMMMb   6MMMMMM        MMMMMMb `MM(    )M' 6MMMMb   M  
+6M'`Mb  6M'   `Mb 6M'   `Mb 6M'  `MM        MM'  `Mb `Mb    d' 6M'  `Mb  M  
+MM  MM  MM     MM MM     MM MM    MM        MM    MM  YM.  ,P  MM    MM  M  
+YM.,M9  MM     MM MM     MM MM    MM        MM    MM   MM  M   MMMMMMMM  8  
+ YMM9   MM     MM MM     MM MM    MM        MM    MM   `Mbd'   MM           
+(M      YM.   ,M9 YM.   ,M9 YM.  ,MM        MM.  ,M9    YMP    YM    d9 68b 
+ YMMMMb. YMMMMM9   YMMMMM9   YMMMMMM_      _MYMMMM9      M      YMMMM9  Y89 
+6M    Yb                                                d'                  
+YM.   d9                                            (8),P                   
+ YMMMM9                                              YMM                    
+
+
+"""
+    print(goodbye_text)
 
 def display_intro():
     intro_text = """

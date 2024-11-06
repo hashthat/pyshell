@@ -1,0 +1,1 @@
+We are creating a new folder for testing the pyshell application developed for teaching or helping newbies set up their software development environment!

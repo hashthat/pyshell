@@ -49,7 +49,7 @@ def my_shell():
             continue
 
         # echo command for creating README
-        if user_input.startswith("echo"):
+        if user_input.startswith("readme"):
             echo_command(user_input)
             continue
 
@@ -84,8 +84,7 @@ def setup_environment():
     print("Welcome to the Linux Environment Setup Wizard!")
     print("Let's start by familiarizing you with basic Linux commands:")
     
-    install_tkinter()
-
+    
     # Step 1: Introduction to Linux Basics
     print("\nBasic Linux Commands:")
     print("- 'ls': list files and directories.")
@@ -96,8 +95,11 @@ def setup_environment():
     print("- 'whoami' : display's the user or root user in the linux environment")
     print("- 'neofetch' : dislpays the linux environment specs and distro information")
     input("Press Enter to continue...")
+    print("\n\n\n")
+    
 
     check_installation()
+    install_tkinter()
 
     # Step 2: Installing Necessary Software
     print("\nInstalling Git and Python")
@@ -123,7 +125,9 @@ def setup_environment():
     print("You can also use the GUI and copy the ssh-key from the GUI window and paste your key into the box in your github settings ")
     
     input("Press Enter after adding your SSH key to GitHub...")
-
+    
+    git_wizard()
+    
     # Step 4: Project Initialization
     print("\nCreating Your Project Directory")
     project_name = input("Enter your project name: ").strip()
@@ -131,16 +135,31 @@ def setup_environment():
     os.chdir(project_name)
     print(f"Changed to project directory: {os.getcwd()}")
 
+    # prompt the user to create a README file as part of the project
+    readme_content = input("Enter content for READEME.md (e.g., 'This is the beginning of a new project!!'): ")
+    echo_command(f"readme {readme_content}")
+
+    # Developing the Script!
     script_name = input("Enter the name of your script (e.g., hello.py): ")
     with open(script_name, 'w') as f:
         f.write("#!/usr/bin/env python3\nprint('Hello, World!')")
     print(f"Created script: {script_name}")
 
+    # Introduce the chmod wizard for making the script executable
+    print("\nTo make your Python Script executable, lets set the permissions!.")
+    print("Lets use the chmod wizard to set execute permissions for your script!")
+    chmod_wizard(script_name)
+    print(f"Permissions have been set for {script_name}.")
     # Step 5: Initialize Git and Push to GitHub
-    git_wizard()
-    input("Press Enter after reviewing the Git setup. The configuration will take place automatically to configure your username and email.")
-    print("Create a README.md by typying 'echo this is a README (place whatever text after echo, and you'll create a README.md file for your project!)'")
+    print("Create a README.md file by typing:")
+    print("  readme <your README content>")
+    
+    # input("readme: This is the beginning of a new project!")
+    # print("For example: readme This is my project's README.")
     print("Your Linux environment is ready for development.")
+
+    
+
 
 def check_installation():
     """Checks if Python and Git are installed."""
@@ -192,6 +211,7 @@ def ask_bot(question):
         "whoami": "Command 'whoami': Displays the current logged-in user.",
         "neofetch": "Command 'neofetch': Shows Linux environment specs and distro information.",
         "chmod": "Command 'chmod': Changes file permissions. Syntax: chmod <permissions> <filename>.",
+        "cat" : "Command 'cat' : views whats inside the file in the terminal",
         "grep": "Command 'grep': Searches for a pattern in files. Example: grep 'pattern' filename.txt."
     }
     if question in linux_commands:
@@ -237,17 +257,22 @@ def install_tkinter():
 
 
 def echo_command(user_input):
-    """Creates a README file based on user input."""
+    """Creates or overwrites a README.md file with user-provided content."""
     args = user_input.split(maxsplit=1)
     if len(args) < 2:
-        print("Usage: echo <text> > README.md")
+        print("Usage: readme <text>")
         return
 
     text = args[1]
-    with open("README.md", "w") as readme:
+    file_path = "README.md"
+    if os.path.exists(file_path):
+        print("Warning: README.md already exists and will be overwritten.")
+
+    with open(file_path, "w") as readme:
         readme.write(text)
     print("Created README.md with content:")
     print(text)
+
 
     
 def launch_ssh_wizard():
@@ -260,7 +285,7 @@ def launch_ssh_wizard():
 def git_wizard():
     """Provides a guide for basic Git commands."""
     print("Basic Git commands:")
-    print("- 'git init': Initialize a new Git repository.")
+    print("- 'git init': Initialize a new Git repository if the folder isn't already initialized.")
     print("- 'git add <file>': Add changes to the staging area.")
     print("- 'git commit -m \"message\"': Commit with a message.")
     print("- 'git push': Push changes to the repository.")

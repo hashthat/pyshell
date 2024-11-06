@@ -3,6 +3,7 @@ import os
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
+import webbrowser
 
 def my_shell():
     """
@@ -107,6 +108,7 @@ def setup_environment():
     input("Press Enter after installation...")
 
 
+
     # Step 3: Setting up SSH Keys for GitHub
     print("\nSetting Up SSH Keys for GitHub")
     print("To push your work to GitHub, set up SSH keys.")
@@ -115,8 +117,11 @@ def setup_environment():
     input("Press Enter and we will create your SSH key in the git_wizard!!...")
 
     launch_ssh_wizard()
-    
+    # open_github_ssh_page()
+
     print("Copy your SSH key using 'cat ~/.ssh/id_rsa.pub' and add it to GitHub settings.")
+    print("You can also use the GUI and copy the ssh-key from the GUI window and paste your key into the box in your github settings ")
+    
     input("Press Enter after adding your SSH key to GitHub...")
 
     # Step 4: Project Initialization
@@ -157,6 +162,7 @@ def check_installation():
 
     except Exception as e:
         print(f"Error checking installations: {e}")
+
 
 def chmod_wizard(filename):
     """Sets file permission using 'chmod u+x' and explains different permission settings."""

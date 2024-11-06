@@ -10,6 +10,7 @@ def my_shell():
     The main shell interface function where users can type commands.
     Provides an introduction to PyShell with options to explore features.
     """
+    display_intro()
     print("Welcome to PyShell! Type 'exit' to quit.")
     print("Use 'ask' to get help with Linux commands, concepts, or Git.")
     print("Type 'setup' to start setting up your Linux environment for software development.")
@@ -78,6 +79,19 @@ def my_shell():
 
         except Exception as e:
             print(f"Error: {e}")
+
+def display_intro():
+    intro_text = """
+                  _          _ _ 
+                 | |        | | |
+  _ __  _   _ ___| |__   ___| | |
+ | '_ \\| | | / __| '_ \\ / _ \\ | |
+ | |_) | |_| \\__ \\ | | |  __/ | |
+ | .__/ \\__, |___/_| |_|\\___|_|_|
+ | |     __/ |                   
+ |_|    |___/                     
+    """
+    print(intro_text)
 
 def setup_environment():
     """Guides the user through setting up their Linux environment and GitHub integration."""
